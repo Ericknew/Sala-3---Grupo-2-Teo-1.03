@@ -53,7 +53,7 @@ Donde:
 ---
 ### 2. Cálculo de pendientes y costos asociados
 ### 3. Determinación del punto silla y distancia vertical de máxima sepación
-Objetivo 1: Clasificar los puntos críticos de la superficie. ( Posibles maximos , minimos o puntos sillas en las supercie.
+Objetivo 1: Clasificar los puntos críticos de la superficie. ( Posibles maximos , minimos o puntos sillas en las superficie ) .
 
 $$f(x,y) = 4 e^{-0.1(x^2 + y^2)} + 2.5 e^{-0.1((x - 5)^2 + (y - 5)^2)}$$
 
@@ -61,39 +61,33 @@ $$f(x,y) = 4 e^{-0.1(x^2 + y^2)} + 2.5 e^{-0.1((x - 5)^2 + (y - 5)^2)}$$
 
 El segundo objetivo consiste en hallar la máxima separación vertical entre un puente y el terreno, y verificar si esta máxima separación ocurre en un punto silla del terreno. El puente se define como una línea recta que conecta los puntos $A(0,0,4.02)$ y $B(5,5,2.53)$.
 
+## Las herramientas y variables involucradas 
+
 ### 3.1. Modelado de la Línea Recta (Puente)
 
-La línea recta que representa el puente, $\mathbf{L}(t)$, se parametriza como:
+La línea recta que representa el puente, $\mathbf{L}(t)$, se reprsenta  como:
 
-$$\mathbf{L}(t) = \langle x(t), y(t), Z_{puente}(t) \rangle$$
+- $$\mathbf{P}_0$$ = Vector Posición
+- $$\mathbf{D}$$ = Vector Dirección
 
-Utilizando los puntos $A(0,0,4.02)$ y $B(5,5,2.53)$, la ecuación paramétrica del puente es:
-
-$$\mathbf{L}(t) = \mathbf{A} + t(\mathbf{B} - \mathbf{A})$$
-$$\mathbf{L}(t) = \langle 0,0,4.02 \rangle + t(\langle 5,5,2.53 \rangle - \langle 0,0,4.02 \rangle)$$
-$$\mathbf{L}(t) = \langle 5t, 5t, 4.02 - 1.49t \rangle \quad \text{para } 0 \le t \le 1$$
-
-La elevación del puente a lo largo de su trayectoria es:
-
-$$Z_{puente}(t) = 4.02 - 1.49t$$
+$$\mathbf{L}(t) = \mathbf{P}_0 + t\mathbf{D}$$
 
 ### 3.2. Elevación del Terreno a lo Largo de la Trayectoria del Puente
 
-La función de elevación del terreno es $f(x,y)$. Para evaluar la elevación del terreno bajo la trayectoria del puente, sustituimos $x(t) = 5t$ y $y(t) = 5t$ en $f(x,y)$:
+La función de elevación del terreno es $f(x,y)$. Para evaluar la elevación del terreno bajo la trayectoria del puente, sustituimos $x = x(t)$  y $y=y(t)$ en $f(x,y)$:
 
-$$Z_{terreno}(t) = f(x(t),y(t)) = 4 e^{-0.1((5t)^2 + (5t)^2)} + 2.5 e^{-0.1(((5t) - 5)^2 + ((5t) - 5)^2)}$$
-Simplificando esta expresión:
-$$Z_{terreno}(t) = 4 e^{-5t^2} + 2.5 e^{-5(t - 1)^2}$$
+$$Z_{terreno}(t) = f(x(t),y(t)) = 4 e^{-0.1((x(t))^2 + (y(t))^2)} + 2.5 e^{-0.1(((x(t)) - 5)^2 + ((y(t)) - 5)^2)}$$
+
 
 ### 3.3. Función de Separación Vertical
 
 La separación vertical diferencial, $\Delta Z(t)$, entre el puente y el terreno a lo largo de la trayectoria es la diferencia entre la elevación del puente y la elevación del terreno:
 
 $$\Delta Z(t) = Z_{puente}(t) - Z_{terreno}(t)$$
-$$\Delta Z(t) = (4.02 - 1.49t) - \left(4 e^{-5t^2} + 2.5 e^{-5(t - 1)^2}\right)$$
+### 3.4 Verificar si cae en un punto silla.
+Comprobar si la máxima separación vertical recae en un punto crítico hallado en el objetivo. 
 
-Para hallar la **máxima separación vertical**, es necesario encontrar el valor máximo de $\Delta Z(t)$ en el intervalo $0 \le t \le 1$. Esto se logra calculando la primera derivada de $\Delta Z(t)$, igualándola a cero para encontrar los puntos críticos, y evaluando $\Delta Z(t)$ en estos puntos y en los extremos del intervalo ($t=0$ y $t=1$).
- 
+
 ### 4. Cálculo del volumen de excavación con integrales dobles
 ### 5. Análisis comparativo y propuesta final. 
 
